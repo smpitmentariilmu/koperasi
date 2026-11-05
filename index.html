@@ -2529,378 +2529,43 @@
         };
 
         App.API = {
-            _mockDB: {
-                activity_logs: [],
-                users: [
-                    { id: 1, name: 'Administrator Inti', username: 'admin', role: 'SUPER_ADMIN', status:'Aktif' },
-                    { id: 2, name: 'Siti Aminah', username: 'kasir', role: 'KASIR', status:'Aktif', akses: ['dashboard', 'penjualan', 'datapenjualan', 'returpenjualan'] }
-                ],
-                kategori: [
-                    { id: 1, nama: 'ATK', desc: 'Alat Tulis Kantor' },
-                    { id: 2, nama: 'Konsumsi', desc: 'Makanan ringan dan minuman' },
-                    { id: 3, nama: 'Seragam', desc: 'Atribut sekolah' },
-                    { id: 4, nama: 'Buku & Modul', desc: 'Buku pelajaran dan modul' },
-                    { id: 5, nama: 'Perlengkapan', desc: 'Perlengkapan kegiatan siswa' }
-                ],
-                etalase: [
-                    { id: 1, nama: 'Rak A1', desc: 'Area alat tulis kantor' },
-                    { id: 2, nama: 'Rak B1', desc: 'Area makanan dan minuman' },
-                    { id: 3, nama: 'Rak C1', desc: 'Area seragam dan atribut sekolah' },
-                    { id: 4, nama: 'Rak D1', desc: 'Area buku dan modul' },
-                    { id: 5, nama: 'Rak E1', desc: 'Area perlengkapan' },
-                    { id: 6, nama: 'Olga Perempuan M', desc: 'Loker seragam olahraga perempuan ukuran M' },
-                    { id: 7, nama: 'Olga Perempuan L', desc: 'Loker seragam olahraga perempuan ukuran L' },
-                    { id: 8, nama: 'Olga Perempuan XL', desc: 'Loker seragam olahraga perempuan ukuran XL' },
-                    { id: 9, nama: 'Olga Laki-laki M', desc: 'Loker seragam olahraga laki-laki ukuran M' },
-                    { id: 10, nama: 'Olga Laki-laki L', desc: 'Loker seragam olahraga laki-laki ukuran L' },
-                    { id: 11, nama: 'Olga Laki-laki XL', desc: 'Loker seragam olahraga laki-laki ukuran XL' },
-                    { id: 12, nama: 'Baju OSIS Perempuan M', desc: 'Loker baju OSIS perempuan ukuran M' },
-                    { id: 13, nama: 'Baju OSIS Perempuan L', desc: 'Loker baju OSIS perempuan ukuran L' },
-                    { id: 14, nama: 'Baju OSIS Perempuan XL', desc: 'Loker baju OSIS perempuan ukuran XL' },
-                    { id: 15, nama: 'Baju OSIS Laki-laki M', desc: 'Loker baju OSIS laki-laki ukuran M' },
-                    { id: 16, nama: 'Baju OSIS Laki-laki L', desc: 'Loker baju OSIS laki-laki ukuran L' },
-                    { id: 17, nama: 'Baju OSIS Laki-laki XL', desc: 'Loker baju OSIS laki-laki ukuran XL' }
-                ],
-                supplier: [
-                    { id: 1, kode: 'SUP-001', nama: 'PT Makmur Jaya', kontak: 'Bpk Joko', telp: '081234567890', alamat: 'Kawasan Industri A' },
-                    { id: 2, kode: 'SUP-002', nama: 'CV Pangan Lestari', kontak: 'Ibu Rina', telp: '085611223344', alamat: 'Pasar Induk' },
-                    { id: 3, kode: 'SUP-003', nama: 'PT Sumber Edukasi', kontak: 'Bpk Deni', telp: '081298765432', alamat: 'Bandung' },
-                    { id: 4, kode: 'SUP-004', nama: 'CV Seragam Mandiri', kontak: 'Ibu Lina', telp: '082112223333', alamat: 'Karawang' },
-                    { id: 5, kode: 'SUP-005', nama: 'Toko Berkah Jaya', kontak: 'Bpk Andi', telp: '085700112233', alamat: 'Cikampek' }
-                ],
-                barang: [
-                    { id: 1, kode: 'BRG-0001', barcode: '8991234567890', nama: 'Buku Tulis Sidu 38', kategori: 'ATK', supplier: 'PT Makmur Jaya', satuan: 'Pcs', stok: 150, min_stok: 20, lokasi: 'Rak A1', hargabeli: 2500, hargajual: 3500, status: 'Aktif' },
-                    { id: 2, kode: 'BRG-0002', barcode: '', nama: 'Pulpen Faster Hitam', kategori: 'ATK', supplier: 'PT Makmur Jaya', satuan: 'Pcs', stok: 10, min_stok: 50, lokasi: 'Rak B2', hargabeli: 2000, hargajual: 3000, status: 'Aktif' },
-                    { id: 3, kode: 'BRG-0003', barcode: '8999876543210', nama: 'Air Mineral Gelas', kategori: 'Konsumsi', supplier: 'CV Pangan Lestari', satuan: 'Dus', stok: 5, min_stok: 10, lokasi: 'Gudang Belakang', hargabeli: 15000, hargajual: 20000, status: 'Aktif' },
-                    { id: 4, kode: 'BRG-0004', barcode: '8991111222233', nama: 'Buku Tulis Sidu 58', kategori: 'Buku & Modul', supplier: 'PT Sumber Edukasi', satuan: 'Pcs', stok: 85, min_stok: 15, lokasi: 'Rak D1', hargabeli: 3500, hargajual: 5000, status: 'Aktif' },
-                    { id: 5, kode: 'BRG-0005', barcode: '8994444555566', nama: 'Dasi Sekolah', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 30, min_stok: 8, lokasi: 'Rak C1', hargabeli: 12000, hargajual: 18000, status: 'Aktif' },
-                    { id: 6, kode: 'BRG-0006', nama: 'Seragam Olahraga - Perempuan M', nama_produk: 'Seragam Olahraga', parent_nama: 'Seragam Olahraga', parent_id: 'GRP-DEMO-OLGA', jenis_kelamin: 'Perempuan', gender: 'Perempuan', ukuran: 'M', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 12, min_stok: 3, lokasi: 'Olga Perempuan M', loker: 'Olga Perempuan M', hargabeli: 65000, hargajual: 85000, status: 'Aktif' },
-                    { id: 7, kode: 'BRG-0007', nama: 'Seragam Olahraga - Perempuan L', nama_produk: 'Seragam Olahraga', parent_nama: 'Seragam Olahraga', parent_id: 'GRP-DEMO-OLGA', jenis_kelamin: 'Perempuan', gender: 'Perempuan', ukuran: 'L', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 10, min_stok: 3, lokasi: 'Olga Perempuan L', loker: 'Olga Perempuan L', hargabeli: 65000, hargajual: 85000, status: 'Aktif' },
-                    { id: 8, kode: 'BRG-0008', nama: 'Seragam Olahraga - Perempuan XL', nama_produk: 'Seragam Olahraga', parent_nama: 'Seragam Olahraga', parent_id: 'GRP-DEMO-OLGA', jenis_kelamin: 'Perempuan', gender: 'Perempuan', ukuran: 'XL', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 6, min_stok: 2, lokasi: 'Olga Perempuan XL', loker: 'Olga Perempuan XL', hargabeli: 65000, hargajual: 85000, status: 'Aktif' },
-                    { id: 9, kode: 'BRG-0009', nama: 'Seragam Olahraga - Laki-laki M', nama_produk: 'Seragam Olahraga', parent_nama: 'Seragam Olahraga', parent_id: 'GRP-DEMO-OLGA', jenis_kelamin: 'Laki-laki', gender: 'Laki-laki', ukuran: 'M', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 14, min_stok: 3, lokasi: 'Olga Laki-laki M', loker: 'Olga Laki-laki M', hargabeli: 65000, hargajual: 85000, status: 'Aktif' },
-                    { id: 10, kode: 'BRG-0010', nama: 'Seragam Olahraga - Laki-laki L', nama_produk: 'Seragam Olahraga', parent_nama: 'Seragam Olahraga', parent_id: 'GRP-DEMO-OLGA', jenis_kelamin: 'Laki-laki', gender: 'Laki-laki', ukuran: 'L', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 11, min_stok: 3, lokasi: 'Olga Laki-laki L', loker: 'Olga Laki-laki L', hargabeli: 65000, hargajual: 85000, status: 'Aktif' },
-                    { id: 11, kode: 'BRG-0011', nama: 'Seragam Olahraga - Laki-laki XL', nama_produk: 'Seragam Olahraga', parent_nama: 'Seragam Olahraga', parent_id: 'GRP-DEMO-OLGA', jenis_kelamin: 'Laki-laki', gender: 'Laki-laki', ukuran: 'XL', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 8, min_stok: 2, lokasi: 'Olga Laki-laki XL', loker: 'Olga Laki-laki XL', hargabeli: 65000, hargajual: 85000, status: 'Aktif' },
-                    { id: 12, kode: 'BRG-0012', nama: 'Baju OSIS - Perempuan M', nama_produk: 'Baju OSIS', parent_nama: 'Baju OSIS', parent_id: 'GRP-DEMO-OSIS', jenis_kelamin: 'Perempuan', gender: 'Perempuan', ukuran: 'M', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 9, min_stok: 2, lokasi: 'Baju OSIS Perempuan M', loker: 'Baju OSIS Perempuan M', hargabeli: 55000, hargajual: 75000, status: 'Aktif' },
-                    { id: 13, kode: 'BRG-0013', nama: 'Baju OSIS - Perempuan L', nama_produk: 'Baju OSIS', parent_nama: 'Baju OSIS', parent_id: 'GRP-DEMO-OSIS', jenis_kelamin: 'Perempuan', gender: 'Perempuan', ukuran: 'L', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 7, min_stok: 2, lokasi: 'Baju OSIS Perempuan L', loker: 'Baju OSIS Perempuan L', hargabeli: 55000, hargajual: 75000, status: 'Aktif' },
-                    { id: 14, kode: 'BRG-0014', nama: 'Baju OSIS - Perempuan XL', nama_produk: 'Baju OSIS', parent_nama: 'Baju OSIS', parent_id: 'GRP-DEMO-OSIS', jenis_kelamin: 'Perempuan', gender: 'Perempuan', ukuran: 'XL', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 5, min_stok: 2, lokasi: 'Baju OSIS Perempuan XL', loker: 'Baju OSIS Perempuan XL', hargabeli: 55000, hargajual: 75000, status: 'Aktif' },
-                    { id: 15, kode: 'BRG-0015', nama: 'Baju OSIS - Laki-laki M', nama_produk: 'Baju OSIS', parent_nama: 'Baju OSIS', parent_id: 'GRP-DEMO-OSIS', jenis_kelamin: 'Laki-laki', gender: 'Laki-laki', ukuran: 'M', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 10, min_stok: 2, lokasi: 'Baju OSIS Laki-laki M', loker: 'Baju OSIS Laki-laki M', hargabeli: 55000, hargajual: 75000, status: 'Aktif' },
-                    { id: 16, kode: 'BRG-0016', nama: 'Baju OSIS - Laki-laki L', nama_produk: 'Baju OSIS', parent_nama: 'Baju OSIS', parent_id: 'GRP-DEMO-OSIS', jenis_kelamin: 'Laki-laki', gender: 'Laki-laki', ukuran: 'L', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 8, min_stok: 2, lokasi: 'Baju OSIS Laki-laki L', loker: 'Baju OSIS Laki-laki L', hargabeli: 55000, hargajual: 75000, status: 'Aktif' },
-                    { id: 17, kode: 'BRG-0017', nama: 'Baju OSIS - Laki-laki XL', nama_produk: 'Baju OSIS', parent_nama: 'Baju OSIS', parent_id: 'GRP-DEMO-OSIS', jenis_kelamin: 'Laki-laki', gender: 'Laki-laki', ukuran: 'XL', kategori: 'Seragam', supplier: 'CV Seragam Mandiri', satuan: 'Pcs', stok: 6, min_stok: 2, lokasi: 'Baju OSIS Laki-laki XL', loker: 'Baju OSIS Laki-laki XL', hargabeli: 55000, hargajual: 75000, status: 'Aktif' }
-                ],
-                transaksi: [ // Buku Kas
-                    { id: 1, tgl: '2023-10-01', ket: 'Modal Awal', tipe: 'IN', nominal: 15000000, hpp: 0 },
-                    { id: 2, tgl: '2023-10-05', ket: 'Kas Keluar - Beli ATK Grosir', tipe: 'OUT', nominal: 2500000, hpp: 0 },
-                    { id: 3, tgl: '2026-11-01', ket: 'Penjualan harian koperasi', tipe: 'IN', nominal: 425000, hpp: 0 },
-                    { id: 4, tgl: '2026-11-02', ket: 'Pembelian stok buku', tipe: 'OUT', nominal: 750000, hpp: 0 },
-                    { id: 5, tgl: '2026-11-03', ket: 'Pendapatan penjualan ATK', tipe: 'IN', nominal: 680000, hpp: 0 }
-                ],
-                mutasi_stok: [
-                    { id: 101, tgl: '2026-11-01 08:10', barang_id: 1, barang_nama: 'Buku Tulis Sidu 38', jenis: 'Stok Awal', in: 150, out: 0, saldo: 150, ref: 'INIT-001', petugas: 'Admin' },
-                    { id: 102, tgl: '2026-11-01 09:15', barang_id: 2, barang_nama: 'Pulpen Faster Hitam', jenis: 'Pembelian', in: 20, out: 0, saldo: 30, ref: 'PO-001', petugas: 'Bendahara' },
-                    { id: 103, tgl: '2026-11-02 10:20', barang_id: 1, barang_nama: 'Buku Tulis Sidu 38', jenis: 'Penjualan (POS)', in: 0, out: 5, saldo: 145, ref: 'POS-20261102-01', petugas: 'Siti Aminah' },
-                    { id: 106, tgl: '2026-11-02 11:05', barang_id: 2, barang_nama: 'Pulpen Faster Hitam', jenis: 'Penjualan (POS)', in: 0, out: 20, saldo: 10, ref: 'POS-20261102-02', petugas: 'Siti Aminah' },
-                    { id: 104, tgl: '2026-11-02 13:40', barang_id: 3, barang_nama: 'Air Mineral Gelas', jenis: 'Penyesuaian: Barang Rusak', in: 0, out: 1, saldo: 5, ref: 'ADJ-003', petugas: 'Admin' },
-                    { id: 105, tgl: '2026-11-03 08:30', barang_id: 2, barang_nama: 'Pulpen Faster Hitam', jenis: 'Stock Opname', in: 2, out: 0, saldo: 12, ref: 'OPN-002', petugas: 'Bendahara' }
-                ], // Dummy riwayat stok
-                pembelian: [
-                    { id: 1, tgl: '2026-11-01', ref: 'PO-001', supplier: 'PT Makmur Jaya', barang_id: 1, barang_nama: 'Buku Tulis Sidu 38', qty: 50, harga: 2500, total: 125000 },
-                    { id: 2, tgl: '2026-11-01', ref: 'PO-002', supplier: 'PT Makmur Jaya', barang_id: 2, barang_nama: 'Pulpen Faster Hitam', qty: 40, harga: 2000, total: 80000 },
-                    { id: 3, tgl: '2026-11-02', ref: 'PO-003', supplier: 'CV Pangan Lestari', barang_id: 3, barang_nama: 'Air Mineral Gelas', qty: 12, harga: 15000, total: 180000 },
-                    { id: 4, tgl: '2026-11-02', ref: 'PO-004', supplier: 'PT Sumber Edukasi', barang_id: 4, barang_nama: 'Buku Tulis Sidu 58', qty: 30, harga: 3500, total: 105000 },
-                    { id: 5, tgl: '2026-11-03', ref: 'PO-005', supplier: 'CV Seragam Mandiri', barang_id: 5, barang_nama: 'Dasi Sekolah', qty: 10, harga: 12000, total: 120000 }
-                ],
-                retur: [
-                    { id: 1, tgl: '2026-11-01', type: 'Beli', supplier: 'PT Makmur Jaya', barang_nama: 'Buku Tulis Sidu 38', qty: 2, total: 5000, alasan: 'Sampul rusak' },
-                    { id: 2, tgl: '2026-11-02', type: 'Beli', supplier: 'CV Pangan Lestari', barang_nama: 'Air Mineral Gelas', qty: 1, total: 15000, alasan: 'Kemasan bocor' },
-                    { id: 3, tgl: '2026-11-02', type: 'Beli', supplier: 'PT Sumber Edukasi', barang_nama: 'Buku Tulis Sidu 58', qty: 1, total: 3500, alasan: 'Cetakan tidak rapi' },
-                    { id: 4, tgl: '2026-11-02', type: 'Jual', barang_nama: 'Pulpen Faster Hitam', qty: 1, total: 3000, alasan: 'Tinta tidak mengalir' },
-                    { id: 5, tgl: '2026-11-03', type: 'Jual', barang_nama: 'Dasi Sekolah', qty: 1, total: 18000, alasan: 'Ukuran tidak sesuai' }
-                ],
-                penjualan: [
-                    { id: 1, tgl: '2026-11-01 09:10', ref: 'POS-001', items: [{nama:'Buku Tulis Sidu 38',qty:2,kategori:'ATK'}], totalItem:2, total:7000, metode:'Tunai', kasir:'Siti Aminah' },
-                    { id: 2, tgl: '2026-11-01 10:15', ref: 'POS-002', items: [{nama:'Pulpen Faster Hitam',qty:3,kategori:'ATK'}], totalItem:3, total:9000, metode:'QRIS', kasir:'Siti Aminah' },
-                    { id: 3, tgl: '2026-11-02 08:30', ref: 'POS-003', items: [{nama:'Air Mineral Gelas',qty:1,kategori:'Konsumsi'}], totalItem:1, total:20000, metode:'Tunai', kasir:'Siti Aminah' },
-                    { id: 4, tgl: '2026-11-02 11:20', ref: 'POS-004', items: [{nama:'Buku Tulis Sidu 58',qty:2,kategori:'Buku & Modul'}], totalItem:2, total:10000, metode:'Tunai', kasir:'Siti Aminah' },
-                    { id: 5, tgl: '2026-11-03 09:05', ref: 'POS-005', items: [{nama:'Dasi Sekolah',qty:1,kategori:'Seragam'}], totalItem:1, total:18000, metode:'QRIS', kasir:'Siti Aminah' }
-                ],
-                opname: [
-                    { id: 1, tgl: '2026-11-01', barang_id: 1, barang_nama: 'Buku Tulis Sidu 38', stok_sistem: 150, stok_fisik: 150, selisih: 0, ket: 'Stok sesuai', petugas: 'Admin' },
-                    { id: 2, tgl: '2026-11-02', barang_id: 2, barang_nama: 'Pulpen Faster Hitam', stok_sistem: 10, stok_fisik: 12, selisih: 2, ket: 'Ditemukan stok tambahan', petugas: 'Bendahara' },
-                    { id: 3, tgl: '2026-11-03', barang_id: 3, barang_nama: 'Air Mineral Gelas', stok_sistem: 5, stok_fisik: 4, selisih: -1, ket: 'Satu dus rusak', petugas: 'Admin' },
-                    { id: 4, tgl: '2026-11-03', barang_id: 4, barang_nama: 'Buku Tulis Sidu 58', stok_sistem: 85, stok_fisik: 83, selisih: -2, ket: 'Selisih hitung', petugas: 'Admin' },
-                    { id: 5, tgl: '2026-11-03', barang_id: 5, barang_nama: 'Dasi Sekolah', stok_sistem: 30, stok_fisik: 30, selisih: 0, ket: 'Stok sesuai', petugas: 'Bendahara' }
-                ], // Dummy stock opname
-                pengaturan: { nama: 'SMP IT Mentari Ilmu', alamat: 'Karawang', telp: '', footer: 'Terima kasih telah berbelanja!', folder_foto: '' }
+            // Koneksi database Google Apps Script (bukan mockDB).
+            // Ganti URL ini dengan URL Web App hasil deployment GS Koperasi.
+            APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxHYr-pgsmUOVeK24xjnJrMTiBvOj9zcciVQcG2W4cAqYG6g0FW_JvCGh-DL2_NHpQXYg/exec',
+
+            async call(functionName, ...args) {
+                const quietCall = !!(args[0] && args[0].__quietCall === true);
+                if (quietCall) args.shift();
+                if (!quietCall) App.UI.showLoader();
+                try {
+                    if (!this.APPS_SCRIPT_URL || this.APPS_SCRIPT_URL.includes('PASTE_URL')) {
+                        throw new Error('URL Web App Google Apps Script Koperasi belum dikonfigurasi.');
+                    }
+                    const response = await fetch(this.APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify({ action: functionName, args: args, user: App.State.user || null })
+                    });
+                    const raw = await response.text();
+                    let result;
+                    try { result = JSON.parse(raw); }
+                    catch (e) { throw new Error('Respons Apps Script bukan JSON. Periksa URL deployment dan akses Web App.'); }
+                    if (!response.ok || result.status === false || result.status === 'error') {
+                        throw new Error(result.message || 'Permintaan database gagal.');
+                    }
+                    if (result.status === 'success' && Object.prototype.hasOwnProperty.call(result, 'data')) return result.data;
+                    if (Object.prototype.hasOwnProperty.call(result, 'data')) return result.data;
+                    return result;
+                } catch (err) {
+                    console.error('Koneksi database:', functionName, err);
+                    throw err;
+                } finally {
+                    if (!quietCall) App.UI.hideLoader();
+                }
             },
-
-            // Helper Mutasi Stok
-            _catatMutasiStok(barang_id, qty, jenis_transaksi, referensi, dbRef) {
-                const item = dbRef.barang.find(b => b.id == barang_id);
-                if(!item) return;
-                item.stok += Number(qty);
-                dbRef.mutasi_stok.push({
-                    id: Date.now() + Math.floor(Math.random()*100),
-                    tgl: new Date().toLocaleString('id-ID'),
-                    barang_id: item.id,
-                    barang_nama: item.nama,
-                    jenis: jenis_transaksi,
-                    in: qty > 0 ? qty : 0,
-                    out: qty < 0 ? Math.abs(qty) : 0,
-                    saldo: item.stok,
-                    ref: referensi,
-                    petugas: App.State.user ? App.State.user.name : 'Sistem'
-                });
-            },
-
-            call(functionName, ...args) {
-                const quietCall=!!(args[0]&&args[0].__quietCall===true);
-                if(quietCall)args.shift();
-                return new Promise((resolve, reject) => {
-                    if(!quietCall)App.UI.showLoader();
-                    setTimeout(() => {
-                        try {
-                            let response = { status: true };
-                            const db = this._mockDB;
-
-                            if(functionName === 'doLogin') {
-                                const user = db.users.find(x => x.username === args[0]);
-                                if(user && args[1].includes('123') && (user.status||'Aktif')==='Aktif') response = { status: true, user };
-                                else response = { status: false, message: user && (user.status||'Aktif')!=='Aktif' ? 'Akun sedang nonaktif. Hubungi administrator.' : 'Invalid credentials' };
-                            }
-                            else if(functionName === 'getDashboard') {
-                                // Agregasi
-                                let totalJual = 0; db.transaksi.filter(t => t.ket.includes('Penjualan')).forEach(t => totalJual += t.nominal);
-                                let saldo = 0; db.transaksi.forEach(t => t.tipe === 'IN' ? saldo += t.nominal : saldo -= t.nominal);
-                                let stokMenipis = db.barang.filter(b => b.stok <= b.min_stok).length;
-                                response = { penjualan: totalJual, kas: saldo, anggota: 342, barang: db.barang.length, stok_menipis: stokMenipis, lowItems: db.barang.filter(b => b.stok <= b.min_stok), mutasiList: db.mutasi_stok.slice(-5).reverse() };
-                            }
-                            else if(functionName === 'getBarang') response = [...db.barang].reverse();
-                            else if(functionName === 'saveBarang') {
-                                const p = args[0];
-                                if(p.id && db.barang.some(b => b.id == p.id)) {
-                                    const idx = db.barang.findIndex(b => b.id == p.id);
-                                    if(idx > -1) { p.kode = db.barang[idx].kode; db.barang[idx] = {...db.barang[idx], ...p}; }
-                                } else {
-                                    p.id = p.id || (Date.now() + Math.floor(Math.random()*10000));
-                                    p.kode = p.kode || `BRG-${String(db.barang.length + 1).padStart(4, '0')}`;
-                                    db.barang.push(p);
-                                    this._catatMutasiStok(p.id, Number(p.stok)||0, 'Stok Awal', 'Setup Sistem', db);
-                                }
-                                response = { status: true, message: 'Barang tersimpan' };
-                            }
-
-                            else if(functionName === 'deleteBarang') {
-                                const id=args[0], used=(db.penjualan||[]).some(t=>(t.items||[]).some(i=>i.barang_id==id))||(db.pembelian||[]).some(x=>x.barang_id==id)||(db.mutasi_stok||[]).some(x=>x.barang_id==id && !String(x.jenis||'').toLowerCase().includes('awal'))||(db.opname||[]).some(x=>x.barang_id==id)||(db.retur||[]).some(x=>x.barang_id==id);
-                                if(used) response={status:false,used:true,message:'Barang sudah pernah digunakan. Hanya bisa dinonaktifkan.'}; else {db.barang=db.barang.filter(x=>x.id!=id);response={status:true,message:'Barang berhasil dihapus'};}
-                            }
-                            else if(functionName === 'deleteSupplier') {
-                                const id=args[0], sup=db.supplier.find(x=>x.id==id), used=!!sup&&((db.barang||[]).some(b=>b.supplier===sup.nama)||(db.pembelian||[]).some(b=>b.supplier===sup.nama)||(db.retur||[]).some(b=>b.supplier===sup.nama));
-                                if(used) response={status:false,used:true,message:'Supplier sudah pernah digunakan. Hanya bisa dinonaktifkan.'}; else {db.supplier=db.supplier.filter(x=>x.id!=id);response={status:true,message:'Supplier berhasil dihapus'};}
-                            }
-                            else if(functionName === 'deletePenjualan') {
-                                const id=args[0],i=(db.penjualan||[]).findIndex(x=>x.id==id);if(i<0)response={status:false,message:'Transaksi tidak ditemukan'};else{const x=db.penjualan[i];(x.items||[]).forEach(it=>this._catatMutasiStok(it.barang_id,Number(it.qty)||0,'Pembatalan Penjualan',x.ref,db));db.penjualan.splice(i,1);response={status:true,message:'Penjualan dihapus dan stok dikembalikan'};}
-                            }
-                            else if(functionName === 'updatePenjualan') {
-                                const [id,p]=args,i=(db.penjualan||[]).findIndex(x=>x.id==id);if(i<0)response={status:false,message:'Transaksi tidak ditemukan'};else{db.penjualan[i]={...db.penjualan[i],...p,id};response={status:true,message:'Penjualan diperbarui'};}
-                            }
-                            else if(functionName === 'updatePembelian') {
-                                const [id,p]=args,i=db.pembelian.findIndex(x=>x.id==id);if(i<0)response={status:false,message:'Pembelian tidak ditemukan'};else{const old=db.pembelian[i];this._catatMutasiStok(old.barang_id,-Number(old.qty||0),'Koreksi Edit Pembelian',old.ref,db);db.pembelian[i]={...old,...p,id,tgl:old.tgl};this._catatMutasiStok(p.barang_id,Number(p.qty||0),'Edit Pembelian',p.ref,db);response={status:true,message:'Pembelian diperbarui'};}
-                            }
-                            else if(functionName === 'deletePembelian') {
-                                const id=args[0],i=db.pembelian.findIndex(x=>x.id==id);if(i<0)response={status:false,message:'Pembelian tidak ditemukan'};else{const old=db.pembelian[i];this._catatMutasiStok(old.barang_id,-Number(old.qty||0),'Hapus Pembelian',old.ref,db);db.pembelian.splice(i,1);response={status:true,message:'Pembelian dihapus'};}
-                            }
-                            else if(functionName === 'getActivityLogs') response=[...(db.activity_logs||[])].reverse();
-
-                            else if(functionName === 'getSupplier') response = [...db.supplier].reverse();
-                            else if(functionName === 'saveSupplier') {
-                                const p = args[0];
-                                if(p.id) {
-                                    const idx = db.supplier.findIndex(s => s.id == p.id);
-                                    if(idx > -1) { p.kode = db.supplier[idx].kode; p.status=p.status||'Aktif'; db.supplier[idx] = p; }
-                                } else {
-                                    p.id = Date.now(); p.kode = `SUP-${String(db.supplier.length+1).padStart(3, '0')}`; p.status=p.status||'Aktif';
-                                    db.supplier.push(p);
-                                }
-                                response = {status:true, message: 'Supplier tersimpan'};
-                            }
-                            // TRANSAKSI
-                            else if(functionName === 'processCheckout') {
-                                const [cart, total, bayar, metode] = args;
-                                let tHpp = 0;
-                                const transactionId = 'POS-' + Date.now();
-                                const items = cart.map(item => {
-                                    const dbItem = db.barang.find(b => b.id === item.id);
-                                    if(dbItem) {
-                                        tHpp += (dbItem.hargabeli * item.qty);
-                                        this._catatMutasiStok(item.id, -item.qty, 'Penjualan (POS)', transactionId, db);
-                                    }
-                                    return { barang_id:item.id, kode:item.kode, nama:item.nama, nama_produk:item.nama_produk||item.parent_nama||item.nama, ukuran:item.ukuran||'', kategori:dbItem?.kategori || item.kategori || '-', qty:Number(item.qty), harga:Number(item.hargajual), subtotal:Number(item.hargajual)*Number(item.qty) };
-                                });
-                                const tgl = new Date().toISOString().split('T')[0];
-                                const sales = { id:Date.now(), ref:transactionId, tgl, items, totalItem:items.reduce((n,x)=>n+x.qty,0), total:Number(total), bayar:Number(bayar), kembalian:Math.max(0,Number(bayar)-Number(total)), metode, kasir:App.State.user?.name || 'Kasir' };
-                                db.penjualan.push(sales);
-                                db.transaksi.push({ id: Date.now()+1, tgl, ket: `Penjualan POS (${metode})`, tipe: 'IN', nominal: total, hpp: tHpp });
-                                response = {status:true, data:sales};
-                            }
-                            else if(functionName === 'getPenjualan') response = [...(db.penjualan||[])].reverse();
-                            else if(functionName === 'savePembelian') {
-                                const p = args[0]; p.id = Date.now(); p.tgl = new Date().toISOString().split('T')[0];
-                                db.pembelian.push(p);
-                                this._catatMutasiStok(p.barang_id, parseInt(p.qty), 'Pembelian', p.ref || 'PO-'+p.id, db);
-                                db.transaksi.push({ id: Date.now()+1, tgl: p.tgl, ket: `Pembelian ke ${p.supplier} (Ref: ${p.ref})`, tipe: 'OUT', nominal: p.total, hpp: 0 });
-                                response = { status: true, message: 'Pembelian & Mutasi berhasil dicatat' };
-                            }
-                            else if(functionName === 'saveRetur') {
-                                const [type, raw] = args;
-                                const data={...raw,barang_id:Number(raw.barang_id),qty:Number(raw.qty),harga:Number(raw.harga),total:Number(raw.total)};
-                                data.id=Date.now();data.tgl=new Date().toISOString().split('T')[0];
-                                db.retur.push({...data,type});
-                                const isBuy=type==='Beli',qty=isBuy?-data.qty:data.qty,txId=data.id;
-                                this._catatMutasiStok(data.barang_id,qty,isBuy?'Retur Pembelian':'Retur Penjualan',`RET-${txId}: ${data.alasan}`,db);
-                                if(data.total>0)db.transaksi.push({id:Date.now()+1,retur_id:txId,tgl:data.tgl,ket:`Pengembalian dana retur ${isBuy?'beli':'jual'} ${data.barang_nama} [RET-${txId}]`,tipe:isBuy?'IN':'OUT',nominal:data.total,hpp:0});
-                                response={status:true,message:'Retur berhasil diproses',id:txId};
-                            }
-                            else if(functionName === 'updateRetur') {
-                                const [type,id,raw]=args;const idx=db.retur.findIndex(r=>r.id==id&&r.type===type);
-                                if(idx<0){response={status:false,message:'Data retur tidak ditemukan'};}
-                                else{
-                                    const old=db.retur[idx],oldSign=type==='Beli'?-1:1;
-                                    this._catatMutasiStok(Number(old.barang_id),-oldSign*(Number(old.qty)||0),'Koreksi Edit Retur',`Pembatalan RET-${id}`,db);
-                                    db.transaksi=db.transaksi.filter(t=>t.retur_id!=id);
-                                    const data={...raw,id:old.id,tgl:old.tgl,barang_id:Number(raw.barang_id),qty:Number(raw.qty),harga:Number(raw.harga),total:Number(raw.total),type};
-                                    db.retur[idx]=data;const sign=type==='Beli'?-1:1;
-                                    this._catatMutasiStok(data.barang_id,sign*data.qty,'Edit Retur',`RET-${id}: ${data.alasan}`,db);
-                                    if(data.total>0)db.transaksi.push({id:Date.now()+1,retur_id:id,tgl:data.tgl,ket:`Pengembalian dana retur ${type==='Beli'?'beli':'jual'} ${data.barang_nama} [RET-${id}]`,tipe:type==='Beli'?'IN':'OUT',nominal:data.total,hpp:0});
-                                    response={status:true,message:'Data retur berhasil diperbarui'};
-                                }
-                            }
-                            else if(functionName === 'deleteRetur') {
-                                const [type,id]=args;const idx=db.retur.findIndex(r=>r.id==id&&r.type===type);
-                                if(idx<0){response={status:false,message:'Data retur tidak ditemukan'};}
-                                else{
-                                    const old=db.retur[idx],sign=type==='Beli'?-1:1;
-                                    this._catatMutasiStok(Number(old.barang_id),-sign*(Number(old.qty)||0),'Hapus Retur',`Pembatalan RET-${id}`,db);
-                                    db.transaksi=db.transaksi.filter(t=>t.retur_id!=id);
-                                    db.retur.splice(idx,1);response={status:true,message:'Data retur berhasil dihapus'};
-                                }
-                            }
-                            // PERSEDIAAN
-                            else if(functionName === 'getMutasiStok') response = [...db.mutasi_stok].reverse();
-                            else if(functionName === 'getOpname') response = [...db.opname].reverse();
-                            else if(functionName === 'updateOpname') {
-                                const [id,p]=args,idx=db.opname.findIndex(x=>x.id==id);
-                                if(idx<0) response={status:false,message:'Data stock opname tidak ditemukan'};
-                                else {const old=db.opname[idx];this._catatMutasiStok(old.barang_id,-(Number(old.selisih)||0),'Koreksi Edit Stock Opname',old.ket,db);db.opname[idx]={...old,...p,id};this._catatMutasiStok(p.barang_id,Number(p.selisih)||0,'Edit Stock Opname',p.ket,db);response={status:true,message:'Stock opname diperbarui'};}
-                            }
-                            else if(functionName === 'deleteOpname') {
-                                const id=args[0],idx=db.opname.findIndex(x=>x.id==id);
-                                if(idx<0) response={status:false,message:'Data stock opname tidak ditemukan'};
-                                else {const old=db.opname[idx];this._catatMutasiStok(old.barang_id,-(Number(old.selisih)||0),'Hapus Stock Opname',old.ket,db);db.opname.splice(idx,1);response={status:true,message:'Stock opname dihapus'};}
-                            }
-                            else if(functionName === 'saveOpname') {
-                                const d = args[0];
-                                d.id = d.id || Date.now();
-                                db.opname.push(d);
-                                if(d.selisih !== 0) {
-                                    this._catatMutasiStok(d.barang_id, d.selisih, 'Stock Opname', d.ket, db);
-                                }
-                                response = {status: true, message: 'Opname tersimpan.'};
-                            }
-                            else if(functionName === 'savePenyesuaian') {
-                                const d = args[0]; // {barang_id, jenis: 'in'/'out', qty, alasan, ket}
-                                const mult = d.jenis === 'in' ? 1 : -1;
-                                this._catatMutasiStok(d.barang_id, parseInt(d.qty) * mult, 'Penyesuaian: ' + d.alasan, d.ket, db);
-                                response = {status: true, message: 'Penyesuaian stok berhasil.'};
-                            }
-                            // KAS IN/OUT
-                            else if(functionName === 'saveKasTransaksi') {
-                                const t = args[0];
-                                db.transaksi.push({ id: Date.now(), tgl: t.tgl, ket: `Kas ${t.tipe === 'IN' ? 'Masuk' : 'Keluar'} - ${t.ket}`, tipe: t.tipe, nominal: parseInt(t.nominal), hpp: 0 });
-                                response = {status: true, message: 'Transaksi kas tersimpan'};
-                            }
-                            // USERS
-                            else if(functionName === 'getUsers') response = [...db.users].reverse();
-                            else if(functionName === 'saveUser') {
-                                const p = args[0];
-                                if(p.id) {
-                                    const idx = db.users.findIndex(x => x.id == p.id);
-                                    if(idx > -1) { p.akses = db.users[idx].akses; p.status=p.status||'Aktif'; db.users[idx] = p; }
-                                } else {
-                                    p.id = Date.now(); p.akses = Array.isArray(p.akses) ? p.akses : ['dashboard']; p.status=p.status||'Aktif'; db.users.push(p);
-                                }
-                                response = {status: true, message: 'Pengguna disimpan'};
-                            }
-                            else if(functionName === 'deleteUser') {
-                                db.users = db.users.filter(x => x.id != args[0]);
-                                response = {status: true};
-                            }
-                            else if(functionName === 'saveUserAkses') {
-                                const [userId, aksesList] = args;
-                                const idx = db.users.findIndex(x => x.id == userId);
-                                if(idx > -1) {
-                                    db.users[idx].akses = aksesList;
-                                    response = { status: true, message: 'Hak akses diperbarui' };
-                                } else {
-                                    response = { status: false, message: 'User tidak ditemukan' };
-                                }
-                            }
-                            // OTHERS (Kategori, Pengaturan, Buku Kas, LabaRugi)
-                            else if(functionName === 'getPengaturan') response = {...(db.pengaturan||{})};
-                            else if(functionName === 'savePengaturan') { db.pengaturan={...(db.pengaturan||{}),...(args[0]||{})}; response={status:true,message:'Pengaturan tersimpan'}; }
-                            else if(functionName === 'uploadFotoBarang') response={status:false,message:'Backend upload Google Drive belum terpasang. Tambahkan fungsi uploadFotoBarang pada Google Apps Script.'};
-                            else if(functionName === 'getKategori') response = [...db.kategori];
-                            else if(functionName === 'saveKategori') {
-                                const p = args[0];
-                                if(p.id) {
-                                    const idx = db.kategori.findIndex(k => k.id == p.id);
-                                    if(idx > -1) db.kategori[idx] = {...p,status:p.status||'Aktif'};
-                                } else {
-                                    p.id = Date.now();
-                                    p.status=p.status||'Aktif'; db.kategori.push(p);
-                                }
-                                response = { status: true, message: 'Kategori tersimpan' };
-                            }
-                            else if(functionName === 'deleteKategori') {
-                                db.kategori = db.kategori.filter(x => x.id != args[0]);
-                                response = {status: true, message: 'Kategori berhasil dihapus'};
-                            }
-                            else if(functionName === 'getEtalase') response = [...db.etalase];
-                            else if(functionName === 'saveEtalase') {
-                                const p = args[0];
-                                if(p.id) {
-                                    const idx = db.etalase.findIndex(e => e.id == p.id);
-                                    if(idx > -1) db.etalase[idx] = {...p,status:p.status||'Aktif'};
-                                } else {
-                                    p.id = Date.now();
-                                    p.status=p.status||'Aktif'; db.etalase.push(p);
-                                }
-                                response = { status: true, message: 'Etalase tersimpan' };
-                            }
-                            else if(functionName === 'deleteEtalase') {
-                                db.etalase = db.etalase.filter(x => x.id != args[0]);
-                                response = {status: true, message: 'Etalase berhasil dihapus'};
-                            }
-                            else if(functionName === 'getPembelian') response = [...db.pembelian].reverse();
-                            else if(functionName === 'getBukuKas') response = [...db.transaksi].sort((a,b)=>a.id-b.id);
-                            else if(functionName === 'getRetur') response = db.retur.filter(r => r.type === args[0]).reverse();
-                            else if(functionName === 'getLabaRugi') {
-                                const [startDate,endDate] = args;
-                                const trx = db.transaksi.filter(t => App.FilterUtil.inRange(t.tgl,startDate,endDate));
-                                let p = 0, hpp = 0, pLain = 0, biaya = 0;
-                                trx.forEach(t => {
-                                    if(t.ket.includes('Penjualan POS')) { p += t.nominal; hpp += (t.hpp||0); }
-                                    else if(t.tipe === 'IN' && !t.ket.includes('Modal')) pLain += t.nominal;
-                                    else if(t.tipe === 'OUT' && !t.ket.includes('Pembelian ke')) biaya += t.nominal;
-                                });
-                                response = { penjualan: p, hpp: hpp, pendapatan_lain: pLain, biaya_ops: biaya };
-                            }
-
-                            if(!quietCall)App.UI.hideLoader(); resolve(response);
-                        } catch(err) { if(!quietCall)App.UI.hideLoader(); reject(err); }
-                    }, 400); // 400ms simulate delay
-                });
-            },
-            callQuiet(functionName,...args){ return this.call(functionName,{__quietCall:true},...args); }
+            callQuiet(functionName, ...args) {
+                return this.call(functionName, { __quietCall: true }, ...args);
+            }
         };
 
         App.FilterUtil = {
@@ -3067,7 +2732,7 @@
             if(status)status.innerHTML='<i class="fa-solid fa-rotate fa-spin mr-1"></i> Mengambil data terbaru...';
             const [jual,beli,barang,mutasi,kas,returBeli,returJual]=await Promise.all([
               App.API.callQuiet('getPenjualan').catch(()=>[]),App.API.callQuiet('getPembelian').catch(()=>[]),App.API.callQuiet('getBarang').catch(()=>[]),
-              App.API.callQuiet('getMutasiStok').catch(()=>App.API._mockDB?.mutasi_stok||[]),App.API.callQuiet('getBukuKas').catch(()=>App.API._mockDB?.transaksi||[]),App.API.callQuiet('getRetur','Beli').catch(()=>[]),App.API.callQuiet('getRetur','Jual').catch(()=>[])
+              App.API.callQuiet('getMutasiStok').catch(()=>[]),App.API.callQuiet('getBukuKas').catch(()=>[]),App.API.callQuiet('getRetur','Beli').catch(()=>[]),App.API.callQuiet('getRetur','Jual').catch(()=>[])
             ]);
             this.rows=[];
             (jual||[]).forEach(x=>this.rows.push({tgl:x.tgl,jenis:'Penjualan',ref:x.ref||'-',ket:(x.items||[]).map(i=>i.nama).join(', ')||'Penjualan barang',jumlah:Number(x.total)||0,petugas:x.kasir||'-'}));
@@ -3075,7 +2740,7 @@
             [...(returBeli||[]),...(returJual||[])].forEach(x=>this.rows.push({tgl:x.tgl,jenis:'Retur',ref:x.ref||x.id||'-',ket:x.keterangan||x.alasan||x.barang_nama||'Retur barang',jumlah:Number(x.total||x.nominal||x.nilai)||0,petugas:x.petugas||'-'}));
             (mutasi||[]).forEach(x=>this.rows.push({tgl:x.tgl,jenis:'Stok',ref:x.ref||'-',ket:(x.jenis||'Mutasi stok')+' - '+(x.barang_nama||''),jumlah:Number(x.in||0)-Number(x.out||0),petugas:x.petugas||'-'}));
             (kas||[]).forEach(x=>this.rows.push({tgl:x.tgl,jenis:'Kas',ref:x.ref||x.id||'-',ket:x.ket||x.keterangan||'Transaksi kas',jumlah:(x.tipe==='OUT'?-1:1)*Number(x.nominal||0),petugas:x.petugas||'-'}));
-            if(!this.rows.length)this.rows=(App.API._mockDB?.transaksi||[]).map(x=>({tgl:x.tgl,jenis:'Kas',ref:x.id,ket:x.ket,jumlah:(x.tipe==='OUT'?-1:1)*Number(x.nominal||0),petugas:'-'}));
+            if(!this.rows.length)this.rows=([]).map(x=>({tgl:x.tgl,jenis:'Kas',ref:x.id,ket:x.ket,jumlah:(x.tipe==='OUT'?-1:1)*Number(x.nominal||0),petugas:'-'}));
             this.stockValue=(barang||[]).reduce((n,x)=>n+(Number(x.stok)||0)*(Number(x.hargabeli)||0),0);
             this.loading=false;
             this.apply();
@@ -3836,7 +3501,7 @@
             },
             async uploadFotoTerpilih() {
                 if(!this.fotoFileData) return document.getElementById('frm-foto')?.value.trim()||'';
-                const folderUrl=document.getElementById('set-folder-foto')?.value || App.API._mockDB?.pengaturan?.folder_foto || '';
+                const folderUrl=document.getElementById('set-folder-foto')?.value || '';
                 if(!folderUrl) throw new Error('Atur URL folder Google Drive pada Pengaturan Penyimpanan Foto terlebih dahulu.');
                 const payload={fileName:this.fotoFileData.name,mimeType:this.fotoFileData.mimeType,base64:this.fotoFileData.dataUrl.split(',')[1],folderUrl};
                 const result=await App.API.call('uploadFotoBarang',payload);
@@ -4741,7 +4406,7 @@
 
         App.LogAktivitas = {
             data: [], filtered: [], page: 1, limit: 10,
-            record(action,module,detail){const db=App.API._mockDB;db.activity_logs=db.activity_logs||[];const d=new Date();db.activity_logs.push({id:Date.now(),timeLabel:d.toLocaleString('id-ID'),dateLabel:d.toLocaleDateString('id-ID'),user:App.State.user?.name||'Sistem',action,module,detail});},
+            record(action,module,detail){App.API.callQuiet('recordActivityLog',{action,module,detail,user:App.State.user?.name||'Sistem'}).catch(err=>console.warn('Log aktivitas tidak tersimpan:',err));},
             async init(){this.data=await App.API.call('getActivityLogs')||[];this.page=1;this.limit=Number(document.getElementById('log-length')?.value)||10;this.render();},
             render(resetPage=false){
                 const a=this.data||[],q=(document.getElementById('log-search')?.value||'').toLowerCase(),u=document.getElementById('log-user')?.value||'',act=document.getElementById('log-action')?.value||'';
